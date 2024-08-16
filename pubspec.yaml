@@ -1,0 +1,57 @@
+name: flutter_todo
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  sqflite: ^2.3.3+1
+  flutter_svg: ^2.0.10+1
+  shared_preferences: ^2.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+     - assets/images/bag.svg
+     - assets/images/calender.svg
+     - assets/images/calender2.svg
+     - assets/images/hero.svg
+     - assets/images/person.svg
+     - assets/images/person-with-laptop-male.svg
+     - assets/images/shopping.svg
+     - assets/images/splash.svg
+     - assets/images/sun-svgrepo-com.svg
+
+
+  fonts:
+   - family: Anton
+     fonts:
+       - asset: assets/fonts/Anton-Regular.ttf
+         style: normal
+   - family: ConcertOne
+     fonts:
+       - asset: assets/fonts/ConcertOne-Regular.ttf
+         style: normal
+   - family: LilitaOne
+     fonts:
+       - asset: assets/fonts/LilitaOne-Regular.ttf
+         style: normal
+   - family: Trajan
+     fonts:
+       - asset: assets/fonts/Rowdies-Light.ttf
+         weight: 400
+       - asset: assets/fonts/Rowdies-Regular.ttf
+         style: normal
+       - asset: assets/fonts/Rowdies-Bold.ttf
+         weight: 900
