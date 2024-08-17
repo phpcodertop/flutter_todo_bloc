@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_todo/components/custom_btn.dart';
+import 'package:flutter_todo/pages/auth/login.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -40,32 +42,16 @@ class SplashScreen extends StatelessWidget {
                       'TODOIST is a simple and effective to-do list and task manager app which helps you manage your time.'),
             ),
           ),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF00ddb0),
-                    Color(0xFF1cc0b7),
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
+          CustomBtn(
+            text: 'Get Started',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => const LoginPage(),
                 ),
-              ),
-              width: width - 100,
-              padding: const EdgeInsets.all(10),
-              child: const Center(
-                child: Text(
-                  'Get Started',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'LilitaOne',
-                  ),
-                ),
-              ),
-            ),
+              );
+            },
+            decreasedSize: 50,
           ),
         ],
       ),
