@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_todo/bloc/user/user_bloc.dart';
 import 'package:flutter_todo/components/custom_input_field.dart';
 import 'package:flutter_todo/components/rounded_bg.dart';
+import 'package:flutter_todo/models/user.dart';
 
 import '../../components/custom_btn.dart';
 import '../../components/my_drawer.dart';
@@ -13,11 +16,27 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  late TextEditingController usernameController;
+  late TextEditingController emailController;
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    emailController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    usernameController = TextEditingController();
+    emailController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<UserBloc>().currentUser;
+
     double height = MediaQuery.of(context).size.height;
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
@@ -48,7 +67,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       size: 40,
                     ),
                   ),
-            
                   const SizedBox(
                     height: 50,
                   ),
@@ -68,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       CustomInputField(
                         title: 'Username',
                         controller: usernameController,
-                        value: 'Ahmed Halima',
+                        value: user.username,
                       ),
                       const SizedBox(
                         height: 10,
@@ -76,13 +94,25 @@ class _ProfilePageState extends State<ProfilePage> {
                       CustomInputField(
                         title: 'Email',
                         controller: emailController,
-                        value: 'phpcodertop@gmail.com',
+                        value: user.email,
                         isLast: true,
                       ),
                       const SizedBox(
                         height: 50,
                       ),
-                      CustomBtn(text: 'Save', onTap: () {},),
+                      CustomBtn(
+                        text: 'Save',
+                        onTap: () async {
+                          User currentUser = await context.read<UserBloc>().currentUser;
+                          context.read<UserBloc>().add(
+                                UserSavingEvent(
+                                  username: usernameController.text,
+                                  email: emailController.text,
+                                  id: currentUser.id!,
+                                ),
+                              );
+                        },
+                      ),
                     ],
                   )),
                 ],

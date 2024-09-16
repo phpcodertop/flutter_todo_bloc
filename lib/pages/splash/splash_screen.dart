@@ -3,12 +3,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_todo/components/custom_btn.dart';
 import 'package:flutter_todo/pages/auth/login.dart';
 
+import '../../services/app_herlpers.dart';
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+
+    goHomeIfAuthenticated(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
